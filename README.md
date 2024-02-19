@@ -16,3 +16,9 @@ export default function Page() {
   return <Text>Home page</Text>
 }
 ```
+
+## Project's third party libraries
+
+1. `react-hook-form` for form control.
+1. `zod @hookform/resolvers` for form validation.
+1. `axios` for handling HTTP requests.
