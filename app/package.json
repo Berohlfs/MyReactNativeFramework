@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@types/lodash": "^4.17.13",
     "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "expo": "~51.0.39",
     "expo-constants": "~16.0.2",
     "expo-linking": "~6.3.1",

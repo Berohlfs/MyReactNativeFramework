@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView, TextInput, Pressable } from 'react-nativ
 // Libs
 import axios from 'axios'
 import * as Progress from 'react-native-progress'
+import dayjs from 'dayjs'
 // React
 import { useState, useEffect } from 'react'
 // Expo
@@ -33,14 +34,17 @@ export default function Movies() {
     {movies ? 
     
       <ScrollView>
-        {movies.map((character)=> (
-        <Pressable key={character.id}onPress={()=> router.push(`/movie/${character.id}`)}>
+        {movies.map((movie)=> (
+        <Pressable key={movie.id}onPress={()=> router.push(`/movie/${movie.id}`)}>
           <View className={'flex-row items-center gap-4 py-3'}>
             <Image className={'rounded-sm'} 
-              source={{uri: character.attributes.poster ?? default_not_found_image}}
+              source={{uri: movie.attributes.poster ?? default_not_found_image}}
               height={80} 
               width={50}/>
-            <Text>{character.attributes.title}</Text>
+            <View className={'w-9/12'}>
+              <Text numberOfLines={1} className={'truncate font-bold text-lg'}>{movie.attributes.title}</Text>
+              <Text>{dayjs(movie.attributes.release_date).format('MM/DD/YYYY')}</Text>
+            </View>
           </View>
         </Pressable>))}
       </ScrollView>

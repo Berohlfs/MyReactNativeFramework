@@ -30,7 +30,6 @@ export default function CharacterInfo() {
     "marital_status",
     "nationality",
     "patronus",
-    "species",
     "weight"
   ]
 
@@ -55,10 +54,11 @@ export default function CharacterInfo() {
     
       <Image className={'rounded-full'} 
         source={{uri: character?.attributes.image ?? default_profile_picture}}
-        height={150} 
-        width={150}/>
+        height={120} 
+        width={120}/>
 
-      <Text className={'text-2xl py-6 font-bold text-center'}>{character.attributes.name}</Text>
+      <Text className={'text-xl pt-6 font-bold text-center px-5'}>{character.attributes.name}</Text>
+      <Text className={'pb-6 text-center'}>{character.attributes.species ?? 'Unkown species'}</Text>
 
       <View className="h-[1px] bg-gray-200 w-full" />
 
@@ -68,7 +68,7 @@ export default function CharacterInfo() {
 
           {ordered_wanted_attr.filter((attr)=> character.attributes[attr]).map(attr => (
             <View key={attr} className="p-4 bg-white rounded-lg shadow-lg w-full">
-              <Text className="text-lg font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</Text>
+              <Text className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</Text>
               {attr === 'wiki' ? 
               <Link className={'text-blue-700'} href={character.attributes[attr]!}>{character.attributes[attr]}</Link> : 
               <Text className="text-gray-500">{character.attributes[attr]}</Text>}

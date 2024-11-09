@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView, TextInput, Pressable } from 'react-nativ
 // Libs
 import axios from 'axios'
 import * as Progress from 'react-native-progress'
+import dayjs from 'dayjs'
 // React
 import { useState, useEffect } from 'react'
 // Expo
@@ -32,17 +33,17 @@ export default function Books() {
     {books ? 
     
       <ScrollView>
-        {books.map((character)=> (
-        <Pressable key={character.id}onPress={()=> router.push(`/book/${character.id}`)}>
+        {books.map((book)=> (
+        <Pressable key={book.id}onPress={()=> router.push(`/book/${book.id}`)}>
           <View className={'flex-row items-center gap-4 py-3'}>
             <Image className={'rounded-sm'} 
-              source={{uri: character.attributes.cover}}
+              source={{uri: book.attributes.cover}}
               height={80} 
               width={50}/>
-            <View>
-              <Text>{character.attributes.title}</Text>
-              <Text>{character.attributes.release_date}</Text>
-              <Text>{character.attributes.pages} pages</Text>
+            <View className={'w-9/12'}>
+              <Text numberOfLines={1} className={'truncate font-bold text-lg'}>{book.attributes.title}</Text>
+              <Text>{dayjs(book.attributes.release_date).format('MM/DD/YYYY')}</Text>
+              <Text>{book.attributes.pages} pages</Text>
             </View>
           </View>
         </Pressable>))}

@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView } from 'react-native'
 // Libs
 import axios from 'axios'
 import * as Progress from 'react-native-progress'
+import dayjs from 'dayjs'
 // React
 import { useState, useEffect } from 'react'
 // Expo
@@ -18,7 +19,6 @@ export default function BookInfo() {
   const ordered_wanted_attr: (keyof BookAttributes)[] = [
     "wiki",
     "author",
-    "release_date",
     "pages",
     "summary",
     "dedication"
@@ -48,7 +48,8 @@ export default function BookInfo() {
         height={250} 
         width={150}/>
 
-      <Text className={'text-2xl py-6 font-bold text-center'}>{book.attributes.title}</Text>
+      <Text className={'text-xl pt-6 font-bold text-center px-5'}>{book.attributes.title}</Text>
+      <Text className={'pb-6 text-center'}>{dayjs(book.attributes.release_date).format('MM/DD/YYYY')}</Text>
 
       <View className="h-[1px] bg-gray-200 w-full" />
 
@@ -58,7 +59,7 @@ export default function BookInfo() {
 
           {ordered_wanted_attr.filter((attr)=> book.attributes[attr]).map(attr => (
             <View key={attr} className="p-4 bg-white rounded-lg shadow-lg w-full">
-              <Text className="text-lg font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</Text>
+              <Text className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</Text>
               {attr === 'wiki' ? 
               <Link className={'text-blue-700'} href={book.attributes[attr]!}>{book.attributes[attr]}</Link> : 
               <Text className="text-gray-500">{book.attributes[attr]}</Text>}

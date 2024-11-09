@@ -52,7 +52,10 @@ export default function Characters() {
               source={{uri: character.attributes.image ?? default_profile_picture}}
               height={50} 
               width={50}/>
-            <Text numberOfLines={1} className={'text-base truncate w-8/12'}>{character.attributes.name}</Text>
+            <View className={'w-8/12'}>
+              <Text numberOfLines={1} className={'truncate font-bold text-lg'}>{character.attributes.name}</Text>
+              <Text numberOfLines={1} className={'text-base truncate'}>{character.attributes.species ?? 'Unknown species'}</Text>
+            </View>
           </View>
         </Pressable>))}
       </ScrollView>
