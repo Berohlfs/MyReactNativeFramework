@@ -17,8 +17,6 @@ export default function Page() {
 }
 ```
 
-## Project's third party libraries
+## How did I set up NativeWind?
 
-1. `react-hook-form` for form control.
-1. `zod @hookform/resolvers` for form validation.
-1. `axios` for handling HTTP requests.
+[Access docs here.](https://www.nativewind.dev/getting-started/expo-router)
