@@ -1,15 +1,16 @@
 // RN
-import { Text, View, Image, ScrollView } from 'react-native'
+import { Image, ScrollView } from 'react-native'
 // Libs
 import axios from 'axios'
-import * as Progress from 'react-native-progress'
 // React
 import { useState, useEffect } from 'react'
 // Expo
-import { useLocalSearchParams, Link } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 // Utils
 import { default_profile_picture } from '../../utils/general'
 import { CharacterAttributes, Character } from '../../utils/types/character'
+// Components
+import { CustomView, CustomText, Divider, CircularProgressView, CustomLink } from '../../components'
 
 export default function CharacterInfo() {
 
@@ -49,7 +50,7 @@ export default function CharacterInfo() {
   }, [])
 
   return (
-  <View className={'flex-1 pt-8 px-5 flex-col justify-center items-center'}>
+  <CustomView className={'pt-8 px-5 flex-col justify-center items-center'}>
     {character?.attributes ? <>
     
       <Image className={'rounded-full'} 
@@ -57,32 +58,31 @@ export default function CharacterInfo() {
         height={120} 
         width={120}/>
 
-      <Text className={'text-xl pt-6 font-bold text-center px-5'}>{character.attributes.name}</Text>
-      <Text className={'pb-6 text-center'}>{character.attributes.species ?? 'Unkown species'}</Text>
+      <CustomText className={'text-xl pt-6 font-bold text-center px-5'}>{character.attributes.name}</CustomText>
+      <CustomText className={'pb-6 text-center'}>{character.attributes.species ?? 'Unkown species'}</CustomText>
 
-      <View className="h-[1px] bg-gray-200 w-full" />
+      <Divider/>
 
       <ScrollView className={'w-full px-2'}>
 
-        <View className={'flex-col gap-4 py-4'}>
+        <CustomView className={'flex-col gap-4 py-4'}>
 
           {ordered_wanted_attr.filter((attr)=> character.attributes[attr]).map(attr => (
-            <View key={attr} className="p-4 bg-white rounded-lg shadow-lg w-full">
-              <Text className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</Text>
+            <CustomView key={attr} paper={true} className="p-4">
+              <CustomText className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</CustomText>
               {attr === 'wiki' ? 
-              <Link className={'text-blue-700'} href={character.attributes[attr]!}>{character.attributes[attr]}</Link> : 
-              <Text className="text-gray-500">{character.attributes[attr]}</Text>}
-            </View>
+              <CustomLink href={character.attributes[attr]!}>{character.attributes[attr]}</CustomLink> : 
+              <CustomText className="text-gray-500">{character.attributes[attr]}</CustomText>}
+            </CustomView>
           ))}
 
-        </View>
+        </CustomView>
 
       </ScrollView>
     
     </> :
     
-    <View className={'flex-row justify-center h-44 items-center'}>
-        <Progress.Circle size={30} color={'#eeba30'} borderWidth={3} indeterminate={true} />
-    </View>}
-  </View>)
+    <CircularProgressView/>}
+
+  </CustomView>)
 }

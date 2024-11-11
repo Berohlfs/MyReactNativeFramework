@@ -1,8 +1,7 @@
 // RN
-import { Text, View, Image, ScrollView, TextInput, Pressable } from 'react-native'
+import { Image, ScrollView, Pressable } from 'react-native'
 // Libs
 import axios from 'axios'
-import * as Progress from 'react-native-progress'
 import dayjs from 'dayjs'
 // React
 import { useState, useEffect } from 'react'
@@ -11,6 +10,8 @@ import { router } from 'expo-router'
 // Utils
 import { Movie } from '../../utils/types/movie'
 import { default_not_found_image } from '../../utils/general'
+// Components
+import { CustomView, CustomText, CircularProgressView } from '../../components'
 
 export default function Movies() {
 
@@ -30,31 +31,29 @@ export default function Movies() {
   }, [])
 
   return (
-  <View className={'flex-1 px-4'}>
+  <CustomView className={'px-4'}>
     {movies ? 
     
       <ScrollView>
         {movies.map((movie)=> (
         <Pressable key={movie.id}onPress={()=> router.push(`/movie/${movie.id}`)}>
-          <View className={'flex-row items-center gap-4 py-3'}>
+          <CustomView className={'flex-row items-center gap-4 py-3'}>
             <Image className={'rounded-sm'} 
               source={{uri: movie.attributes.poster ?? default_not_found_image}}
               height={80} 
               width={50}/>
-            <View className={'w-9/12'}>
-              <Text numberOfLines={1} className={'truncate font-bold text-lg'}>{movie.attributes.title}</Text>
-              <Text>{dayjs(movie.attributes.release_date).format('MM/DD/YYYY')}</Text>
-            </View>
-          </View>
+            <CustomView className={'w-9/12'}>
+              <CustomText numberOfLines={1} className={'truncate font-bold text-lg'}>{movie.attributes.title}</CustomText>
+              <CustomText>{dayjs(movie.attributes.release_date).format('MM/DD/YYYY')}</CustomText>
+            </CustomView>
+          </CustomView>
         </Pressable>))}
       </ScrollView>
        
       :
 
-      <View className={'flex-row justify-center h-44 items-center'}>
-        <Progress.Circle size={30} color={'#eeba30'} borderWidth={3} indeterminate={true} />
-      </View>
+      <CircularProgressView/>
     }
 
-  </View>)
+  </CustomView>)
 }
