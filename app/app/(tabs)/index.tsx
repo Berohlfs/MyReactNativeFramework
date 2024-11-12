@@ -44,7 +44,7 @@ export default function Characters() {
 
     {characters ? 
     
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         {characters.map((character)=> (
         <Pressable key={character.id}onPress={()=> router.push(`/character/${character.id}`)}>
           <CustomView className={'flex-row items-center gap-4 py-3'}>
