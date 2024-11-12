@@ -14,11 +14,8 @@ export default function TabLayout() {
   const { colorScheme } = useColorScheme()
 
   const backgroundColor = colorScheme === 'dark' ? colors.background.dark : colors.background.light
-
   const textColor = colorScheme === 'dark' ? colors.text.dark : colors.text.light
-
   const borderColor = colorScheme === 'dark' ? colors.divider.dark : colors.divider.light
-
   const primaryColor = colorScheme === 'dark' ? colors.primary.dark : colors.primary.light
 
   return (

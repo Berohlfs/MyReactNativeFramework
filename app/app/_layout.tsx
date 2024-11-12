@@ -31,6 +31,7 @@ export default function RootLayout() {
     <CustomView>
       <Stack screenOptions={{
         animation: 'fade',
+        headerShadowVisible: false,
         headerStyle: { backgroundColor },
         headerTintColor: textColor,
         headerTitle: (title)=> <CustomText className={'font-bold text-xl'}>{title.children}</CustomText>,
