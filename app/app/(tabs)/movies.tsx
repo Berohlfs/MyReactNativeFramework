@@ -11,7 +11,7 @@ import { router } from 'expo-router'
 import { Movie } from '../../utils/types/movie'
 import { default_not_found_image } from '../../utils/general'
 // Components
-import { CustomView, CustomText, CircularProgressView } from '../../components'
+import { CustomView, CustomText, CircularProgressView } from '../../components/generic'
 
 export default function Movies() {
 
@@ -43,8 +43,12 @@ export default function Movies() {
               height={80} 
               width={50}/>
             <CustomView className={'w-9/12'}>
-              <CustomText numberOfLines={1} className={'truncate font-bold text-lg'}>{movie.attributes.title}</CustomText>
-              <CustomText>{dayjs(movie.attributes.release_date).format('MM/DD/YYYY')}</CustomText>
+              <CustomText numberOfLines={1} className={'truncate font-bold text-lg'}>
+                  {movie.attributes.title}
+              </CustomText>
+              <CustomText secondary={true}>
+                {dayjs(movie.attributes.release_date).format('MM/DD/YYYY')}
+              </CustomText>
             </CustomView>
           </CustomView>
         </Pressable>))}

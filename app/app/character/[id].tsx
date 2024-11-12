@@ -1,5 +1,5 @@
 // RN
-import { Image, ScrollView } from 'react-native'
+import { Image } from 'react-native'
 // Libs
 import axios from 'axios'
 // React
@@ -10,14 +10,14 @@ import { useLocalSearchParams } from 'expo-router'
 import { default_profile_picture } from '../../utils/general'
 import { CharacterAttributes, Character } from '../../utils/types/character'
 // Components
-import { CustomView, CustomText, Divider, CircularProgressView, CustomLink } from '../../components'
+import { CustomView, CustomText, Divider, CircularProgressView } from '../../components/generic'
+import { EntityAttributesList } from '../../components/pages'
 
 export default function CharacterInfo() {
 
   const {id} = useLocalSearchParams()
 
   const ordered_wanted_attr: (keyof CharacterAttributes)[] = [
-    "wiki",
     "born",
     "died",
     "animagus",
@@ -31,7 +31,8 @@ export default function CharacterInfo() {
     "marital_status",
     "nationality",
     "patronus",
-    "weight"
+    "weight",
+    "wiki"
   ]
 
   const [character, setCharacter] = useState<Character | null>(null)
@@ -63,22 +64,9 @@ export default function CharacterInfo() {
 
       <Divider/>
 
-      <ScrollView className={'w-full px-2'}>
-
-        <CustomView className={'flex-col gap-4 py-4'}>
-
-          {ordered_wanted_attr.filter((attr)=> character.attributes[attr]).map(attr => (
-            <CustomView key={attr} paper={true} className="p-4">
-              <CustomText className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</CustomText>
-              {attr === 'wiki' ? 
-              <CustomLink href={character.attributes[attr]!}>{character.attributes[attr]}</CustomLink> : 
-              <CustomText className="text-gray-500">{character.attributes[attr]}</CustomText>}
-            </CustomView>
-          ))}
-
-        </CustomView>
-
-      </ScrollView>
+      <EntityAttributesList 
+        entity={character} 
+        attribute_list={ordered_wanted_attr}/>
     
     </> :
     

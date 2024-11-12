@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress'
 import { CustomView } from './CustomView'
 // Styling
 import { useColorScheme } from "nativewind"
-import { colors } from "../theme/colors"
+import { colors } from "../../theme/colors"
 
 export const CircularProgressView = ()=> {
 

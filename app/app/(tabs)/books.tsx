@@ -10,7 +10,7 @@ import { router } from 'expo-router'
 // Utils
 import { Book } from '../../utils/types/book'
 // Components
-import { CustomView, CustomText, CircularProgressView } from '../../components'
+import { CustomView, CustomText, CircularProgressView } from '../../components/generic'
 
 export default function Books() {
 
@@ -43,8 +43,12 @@ export default function Books() {
               width={50}/>
             <CustomView className={'w-9/12'}>
               <CustomText numberOfLines={1} className={'truncate font-bold text-lg'}>{book.attributes.title}</CustomText>
-              <CustomText>{dayjs(book.attributes.release_date).format('MM/DD/YYYY')}</CustomText>
-              <CustomText>{book.attributes.pages} pages</CustomText>
+              <CustomText secondary={true}>
+                {dayjs(book.attributes.release_date).format('MM/DD/YYYY')}
+              </CustomText>
+              <CustomText secondary={true}>
+                {book.attributes.pages} pages
+              </CustomText>
             </CustomView>
           </CustomView>
         </Pressable>))}

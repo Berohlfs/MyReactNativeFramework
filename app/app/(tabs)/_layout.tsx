@@ -7,7 +7,7 @@ import { Image } from 'react-native'
 import { useColorScheme } from "nativewind"
 import { colors } from "../../theme/colors"
 // Components
-import { CustomText, CustomView } from '../../components/index'
+import { CustomText, CustomView } from '../../components/generic'
 
 export default function TabLayout() {
 

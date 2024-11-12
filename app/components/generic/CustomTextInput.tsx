@@ -2,7 +2,7 @@
 import { TextInput, TextInputProps, View } from "react-native"
 // Styling
 import { useColorScheme } from "nativewind"
-import { colors } from "../theme/colors"
+import { colors } from "../../theme/colors"
 
 export const CustomTextInput = ({ ...other}: TextInputProps)=> {
 

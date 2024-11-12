@@ -8,7 +8,7 @@ import * as NavigationBar from 'expo-navigation-bar'
 // RN
 import { Image} from "react-native"
 // Components
-import { CustomText, CustomView } from "../components/index"
+import { CustomText, CustomView } from "../components/generic/index"
 // React
 import { useEffect } from "react"
 

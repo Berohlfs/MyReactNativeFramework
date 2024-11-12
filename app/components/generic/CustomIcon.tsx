@@ -3,7 +3,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 // Styling
 import { useColorScheme } from 'nativewind'
 // Utils
-import { colors } from '../theme/colors'
+import { colors } from '../../theme/colors'
 
 type Props = {
     name: string

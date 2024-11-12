@@ -11,7 +11,7 @@ import { router } from 'expo-router'
 import { default_profile_picture } from '../../utils/general'
 import { Character } from '../../utils/types/character'
 // Components
-import { CustomView, CustomText, Divider, CustomTextInput, CircularProgressView } from '../../components'
+import { CustomView, CustomText, Divider, CustomTextInput, CircularProgressView } from '../../components/generic'
 
 export default function Characters() {
 
@@ -54,7 +54,11 @@ export default function Characters() {
               width={50}/>
             <CustomView className={'w-8/12'}>
               <CustomText numberOfLines={1} className={'truncate font-bold text-lg'}>{character.attributes.name}</CustomText>
-              <CustomText numberOfLines={1} className={'text-base truncate'}>{character.attributes.species ?? 'Unknown species'}</CustomText>
+              <CustomText 
+                secondary={true} 
+                numberOfLines={1} className={'text-base truncate'}>
+                  {character.attributes.species ?? 'Unknown species'}
+              </CustomText>
             </CustomView>
           </CustomView>
         </Pressable>))}

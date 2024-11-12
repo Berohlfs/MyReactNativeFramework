@@ -7,6 +7,10 @@ export const colors = {
     light: '#181818',
     dark: '#f1f1f1'
   },
+  text2: {
+    light: '#484848',
+    dark: '#b3b3b3'
+  },
   link: {
     light: '#1a0dab',
     dark: '#4e8fff'

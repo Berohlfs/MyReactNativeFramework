@@ -1,5 +1,5 @@
 // RN
-import { Image, ScrollView } from 'react-native'
+import { Image } from 'react-native'
 // Libs
 import axios from 'axios'
 import dayjs from 'dayjs'
@@ -11,18 +11,19 @@ import { useLocalSearchParams } from 'expo-router'
 import { default_not_found_image } from '../../utils/general'
 import { Book, BookAttributes } from '../../utils/types/book'
 // Components
-import { CustomView, CustomText, CircularProgressView, Divider, CustomLink } from '../../components'
+import { CustomView, CustomText, Divider, CircularProgressView } from '../../components/generic'
+import { EntityAttributesList } from '../../components/pages'
 
 export default function BookInfo() {
 
   const {id} = useLocalSearchParams()
 
   const ordered_wanted_attr: (keyof BookAttributes)[] = [
-    "wiki",
     "author",
     "pages",
     "summary",
-    "dedication"
+    "dedication",
+    "wiki"
   ]
 
   const [book, setBook] = useState<Book | null>(null)
@@ -54,22 +55,9 @@ export default function BookInfo() {
 
       <Divider/>
 
-      <ScrollView className={'w-full px-2'}>
-
-        <CustomView className={'flex-col gap-4 py-4'}>
-
-          {ordered_wanted_attr.filter((attr)=> book.attributes[attr]).map(attr => (
-            <CustomView key={attr} paper={true} className="p-4">
-              <CustomText className="text-md pb-1 font-semibold">{attr.toUpperCase().replaceAll('_', ' ')}</CustomText>
-              {attr === 'wiki' ? 
-              <CustomLink href={book.attributes[attr]!}>{book.attributes[attr]}</CustomLink> : 
-              <CustomText className="text-gray-500">{book.attributes[attr]}</CustomText>}
-            </CustomView>
-          ))}
-
-        </CustomView>
-
-      </ScrollView>
+      <EntityAttributesList 
+        entity={book} 
+        attribute_list={ordered_wanted_attr}/>
     
     </> :
     
